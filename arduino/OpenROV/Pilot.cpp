@@ -96,7 +96,20 @@ void Pilot::device_loop(Command command){
 
     if( command.cmp("enable_auto_pilot")){
       while(!command.cmp("disable_auto_pilot")){
-        
+        vertical.writeMicroseconds(MIDPOINT-200);
+        port.writeMicroseconds(MIDPOINT);
+        starbord.writeMicroseconds(MIDPOINT);
+        delay(5000);
+
+        vertical.writeMicroseconds(MIDPOINT);
+        port.writeMicroseconds(MIDPOINT+300);
+        starbord.writeMicroseconds(MIDPOINT+300);
+        delay(5000);
+
+        vertical.writeMicroseconds(MIDPOINT+200);
+        port.writeMicroseconds(MIDPOINT);
+        starbord.writeMicroseconds(MIDPOINT);
+        delay(5000);        
       }
     }
 
