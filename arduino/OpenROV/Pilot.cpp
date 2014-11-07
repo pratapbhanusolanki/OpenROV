@@ -5,6 +5,8 @@
 #include "Pin.h"
 #include "Pilot.h"
 #include "Timer.h"
+#include "Motors.h"
+#include "Cape.h"
 
 Timer pilotTimer;
 bool _headingHoldEnabled = false;
@@ -25,6 +27,7 @@ int raw_lift =0;
 int lift = 0;
 int target_depth;
 int raw_yaw, yaw;
+Motors motors(PORT_PIN,VERTICLE_PIN,STARBORD_PIN);
 
 
 
@@ -96,19 +99,13 @@ void Pilot::device_loop(Command command){
 
     if( command.cmp("enable_auto_pilot")){
       while(!command.cmp("disable_auto_pilot")){
-        vertical.writeMicroseconds(MIDPOINT-200);
-        port.writeMicroseconds(MIDPOINT);
-        starbord.writeMicroseconds(MIDPOINT);
+        motors.go(1500, 1800 , 1500);
         delay(5000);
 
-        vertical.writeMicroseconds(MIDPOINT);
-        port.writeMicroseconds(MIDPOINT+300);
-        starbord.writeMicroseconds(MIDPOINT+300);
+        motors.go(1800, 1500 , 1800);
         delay(5000);
 
-        vertical.writeMicroseconds(MIDPOINT+200);
-        port.writeMicroseconds(MIDPOINT);
-        starbord.writeMicroseconds(MIDPOINT);
+        motors.go(1500, 1200 , 1500);
         delay(5000);        
       }
     }
