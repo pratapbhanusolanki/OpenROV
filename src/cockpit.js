@@ -108,6 +108,14 @@ io.sockets.on('connection', function (socket) {
         controller.sendCommand(controls.throttle, controls.yaw, controls.lift);
     });
 
+    socket.on('auto_pilot_on', function(controls) {
+        controller.set_auto_pilot;
+    });
+
+    socket.on('auto_pilot_off', function(controls) {
+        controller.reset_auto_pilot;
+    });
+
     socket.on('tilt_update', function(value) {
         controller.sendTilt(value);
     });

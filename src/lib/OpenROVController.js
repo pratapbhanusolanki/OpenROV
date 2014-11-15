@@ -164,6 +164,19 @@ var OpenROVController = function (eventLoop) {
     var command = 'go(' + motorCommands.port + ',' + motorCommands.vertical + ',' + motorCommands.starbord + ');';
     hardware.write(command);
   };
+
+  controller.set_auto_pilot = function (throttle, yaw, vertical) {
+    if (this.notSafeToControl())
+      return;
+    hardware.write("set_auto_pilot");
+  };
+
+  controller.reset_auto_pilot = function (throttle, yaw, vertical) {
+    if (this.notSafeToControl())
+      return;
+    hardware.write("reset_auto_pilot");
+  };
+
   controller.sendTilt = function (value) {
     if (this.notSafeToControl())
       return;

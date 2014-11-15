@@ -27,9 +27,6 @@ int raw_lift =0;
 int lift = 0;
 int target_depth;
 int raw_yaw, yaw;
-Motors motors(PORT_PIN,VERTICLE_PIN,STARBORD_PIN);
-
-
 
 void Pilot::device_setup(){
   pilotTimer.reset();
@@ -94,19 +91,6 @@ void Pilot::device_loop(Command command){
         Serial.print(F("tdpt:"));
         Serial.print(target_depth);
         Serial.println(';');
-      }
-    }
-
-    if( command.cmp("enable_auto_pilot")){
-      while(!command.cmp("disable_auto_pilot")){
-        motors.go(1500, 1800 , 1500);
-        delay(5000);
-
-        motors.go(1800, 1500 , 1800);
-        delay(5000);
-
-        motors.go(1500, 1200 , 1500);
-        delay(5000);        
       }
     }
 

@@ -228,11 +228,11 @@
     };
 
     ROVpilot.prototype.enableAutoPilot = function enableAutoPilot(){
-        this.cockpit.socket.emit('enable_auto_pilot');
+        this.cockpit.socket.emit('auto_pilot_on');
     };
 
     ROVpilot.prototype.disableAutoPilot = function disableAutoPilot(){
-        this.cockpit.socket.emit('disable_auto_pilot');
+        this.cockpit.socket.emit('auto_pilot_off');
     };
 
     ROVpilot.prototype.powerOnESCs = function powerOnESCs(){

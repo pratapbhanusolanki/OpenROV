@@ -85,6 +85,13 @@ Settings settings;
 
 Command cmd;
 
+//Pratap Bhanu Code :
+Motors play_motors(PORT_PIN,VERTICLE_PIN,STARBORD_PIN);
+
+
+
+//  
+
 volatile byte wdt_resets = 0; //watchdog resets
 
 // IMPORTANT!
@@ -124,6 +131,10 @@ void setup(){
 void loop(){
   wdt_reset();
   cmd.get();
+  if( cmd.cmp("set_auto_pilot")){
+          play_motors.go(1800, 1800, 1800);
+          delay(10000);
+      }
   
   DeviceManager::doDeviceLoops(cmd);
   loops_per_sec++;
